@@ -11,9 +11,14 @@ namespace WebApplication2
 
             routes.MapRoute(
                 name: "TagArchive",
-                url: "{controller}/Archivio/0/{tagId}/{tagTitle}",
-                defaults: new { controller = "Articoli", action = "Archivio", tagId = UrlParameter.Optional, tagTitle = UrlParameter.Optional }
-                );
+                url: "{controller}/Archivio/{page}/{tagId}/{tagTitle}",
+                defaults: new {
+                    controller = "Articoli",
+                    action = "Archivio",
+                    page = UrlParameter.Optional,
+                    tagId = UrlParameter.Optional,
+                    tagTitle = UrlParameter.Optional
+                });
 
             routes.MapRoute(
                 name: "ArticlesArchive",

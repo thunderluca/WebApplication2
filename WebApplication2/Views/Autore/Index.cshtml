@@ -15,7 +15,7 @@
             @foreach (var content in Model.LatestContents)
             {
                 <li itemscope itemtype="http://schema.org/Article">
-                    <img itemprop="thumbnailUrl" class="pull-left" alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png"/>
+                    <img itemprop="thumbnailUrl" class="pull-left img-square-large" alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png"/>
                     <div>
                         <a itemprop="url" href="/@content.SectionTitle.ToLower()/@content.Id">
                             <h5 itemprop="name">@content.Title</h5>

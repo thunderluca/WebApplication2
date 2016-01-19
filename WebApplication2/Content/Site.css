@@ -21,17 +21,19 @@
     white-space: normal;
 }
 
-footer {
-    background-color: #E2E2E2;
-}
-
 a,
 a:visited,
 a:active,
 a:hover,
 #loginLink,
-#registerLink {
+#registerLink,
+ul.pull-right > li > a:hover {
     color: #333;
+}
+
+#loginLink,
+#registerLink {
+    padding: 0;
 }
 
 h1, h2, h3 {
@@ -39,69 +41,8 @@ h1, h2, h3 {
     margin-bottom: 10px;
 }
 
-p.row > a {
-    color: #333;
-    text-decoration: underline;
-}
-
-p * a {
-    text-decoration: underline;
-}
-
 p * a:hover {
     background-color: #d3dce0;
-}
-
-ul.list-unstyled {
-    margin-top: 8px;
-}
-
-ul.list-unstyled > li > div > span > a:hover,
-ul.list-unstyled > li > span > a:hover {
-    background-color: #d3dce0;
-}
-
-.col-md-3 > section > ul > li > a {
-    text-decoration: underline;
-}
-
-ul.list-unstyled > li > div > a {
-    text-decoration: underline;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-ul.list-unstyled > li > div.row > a {
-    text-decoration: none;
-}
-
-ul.list-unstyled > li > div > a > h5 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-ul.list-unstyled > li > div > a > h4 {
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-ul.list-unstyled > li > a > h4 {
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-ul.list-unstyled > li > div > p {
-    margin: 0;
-}
-
-ul.list-unstyled > li > img {
-    width: 48px;
-    height: 48px;
-}
-
-a#articleLink:hover {
-    text-decoration: none;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -111,22 +52,13 @@ textarea {
     max-width: 280px;
 }
 
-input[type="submit"] {
+input[type="submit"],
+.navigation-bar > li:first-child {
     cursor: pointer;
 }
 
-div.col-md-2 {
-    font-size: .8em;
-}
 
-div.col-md-2 > ul > li > a {
-    text-decoration: underline;
-}
-
-body > footer > div > p {
-    font-size: .8em;
-}
-
+/*form styling*/
 .form-inline {
     padding-right: 15px;
     margin: 0;
@@ -156,10 +88,74 @@ body > footer > div > p {
     border-color: Highlight;
 }
 
+
+/*hx headers styling*/
+h1, h2, h3, h4, h5, h6 {
+    text-align: justify;
+}
+
+
+/*ul lists styling*/
+
+ul.list-unstyled {
+    margin-top: 8px;
+}
+
 ul > li {
     list-style: none;
 }
 
+section > ul > li > div > img {
+    margin-top: -4px;
+}
+
+div.hidden-xs > section > ul > li > a > h5 {
+    margin-bottom: 0;
+}
+
+ul.list-unstyled > li > div > span > a:hover,
+ul.list-unstyled > li > span > a:hover {
+    background-color: #d3dce0;
+}
+
+p * a,
+p.row > a,
+footer * a,
+ul.list-unstyled > li > div > a,
+.col-md-3 > section > ul > li > a {
+    text-decoration: underline;
+}
+
+ul.list-unstyled > li > div > a {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ul.list-unstyled > li > div.row > a {
+    text-decoration: none;
+}
+
+ul.list-unstyled > li > div > a > h5 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ul.list-unstyled > li > a > h4,
+ul.list-unstyled > li > div > a > h4 {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+ul.list-unstyled > li > div > a > h4 {
+    margin-top: 0;
+}
+
+ul.list-unstyled > li > div > p {
+    margin: 0;
+}
+
+
+/*Layout sections bar styling*/
 ul.pull-right {
     margin-bottom: 5px;
     padding: 0;
@@ -169,7 +165,6 @@ ul.pull-right {
 ul.pull-right > li {
     display: inline;
     list-style: none;
-    margin-bottom: 5px;
 }
 
 ul.pull-right > li > a,
@@ -181,23 +176,18 @@ ul.pull-right > li > a:visited {
     font-weight: 600;
     padding-left: 15px;
     padding-right: 0;
-    border: hidden; 
 }
 
-ul.pull-right > li > a:hover {
-    color: #333;
-}
 
+/*Head styling*/
 .navbar {
     border-color: #fff;
     background-color: #fff;
     margin-bottom: 0;
 }
 
-.nav > li > a {
-    padding: 0;
-}
 
+/*LoginPartial styling*/
 .navbar-right > li {
     background-color: #d3dce0;
     margin-top: 15px;
@@ -207,11 +197,20 @@ ul.pull-right > li > a:hover {
     padding: 2px;
 }
 
-.typenail {
+
+/*img styling*/
+.img-square-small {
     width: 24px;
     height: 24px;
 }
 
+.img-square-large {
+    width: 48px;
+    height: 48px;
+}
+
+
+/*Content tags styling*/
 .tag {
     color: white; 
     background-color: black;
@@ -219,6 +218,8 @@ ul.pull-right > li > a:hover {
     margin: 0 2px;
 }
 
+
+/*Archive navigation styling*/
 .navigation-bar {
     display: inline-block;
     margin: 20px 0;
@@ -228,10 +229,6 @@ ul.pull-right > li > a:hover {
     list-style: none;
     display: inline;
     float: left;
-}
-
-.navigation-bar > li:first-child {
-    cursor: pointer;
 }
 
 .navigation-bar > li > a {
@@ -261,31 +258,15 @@ ul.pull-right > li > a:hover {
     background-color: #EFEEEF;
 }
 
-.navbar-inverse .nav > li > a:hover {
-    color: #333;
+
+/*Footer styling*/
+footer {
+    font-size: .8em;
+    background-color: #E2E2E2;
 }
 
-.navbar-collapse {
-    margin: 5px 0;
-}
 
-.navbar-nav {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-section > ul > li > a > h5 {
-    text-align: justify;
-}
-
-section > ul > li > div > img {
-    margin-top: -4px;
-}
-
-div.hidden-xs > section > ul > li > a > h5 {
-    margin-bottom: 0;
-}
-
+/*Bootstrap override sm-xs styling*/
 @media (max-width: 768px) {
     .navbar-right {
         padding-left: 15px;

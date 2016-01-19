@@ -27,7 +27,7 @@
                         <a itemprop="url" href="/articoli/@content.Id" class="pull-left" style="font-size: large">
                             <h4 itemprop="name">@content.Title</h4>
                         </a>
-                        <img class="pull-left hidden-xs typenail img-responsive" alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png" title="@content.SectionTitle" />
+                        <img class="pull-left hidden-xs img-square-small img-responsive" alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png" title="@content.SectionTitle" />
                     </div>
                     <div class="row">
                         di
@@ -52,26 +52,22 @@
 
 <aside class="col-md-3 col-sm-12">
     <div>
-        <section id="Forum">
+        <section>
             <h3>[Forum]</h3>
             <ul class="list-unstyled">
                 @foreach (var thread in Model.LatestThreads)
-                {
+            {
                     <li itemscope itemtype="http://schema.org/Article">
                         <a itemprop="url" href="/forum/thread/@thread.Id"><h5 itemprop="name" style="font-weight: bold">@thread.Title</h5></a>
                     </li>
                 }
             </ul>
-
         </section>
-    </div>
-
-    <div>
-        <section id="Media">
-            <h3>[MediaPosts]</h3>
+        <section>
+            <h3>[Media]</h3>
             <ul class="list-unstyled">
                 @foreach (var media in Model.LatestMedia)
-                {
+            {
                     <li itemscope itemtype="http://schema.org/Article">
                         <a itemprop="url" href="/video/@media.Id">
                             <img itemprop="thumbnailUrl" src="@media.Preview" alt="@media.Title" title="@media.Title" height="150" width="200" />
@@ -83,10 +79,8 @@
                     </li>
                 }
             </ul>
-
         </section>
     </div>
-
     <div class="hidden-xs">
         <section>
             <h3>[Blogs]</h3>
