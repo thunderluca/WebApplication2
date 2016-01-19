@@ -1,0 +1,150 @@
+﻿<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UGIdotNET - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/jqueryxml2json")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-12 pull-left">
+                    <a href="http://www.ugidotnet.org">
+                        <img src="/Content/ugidotnet2.png" alt="UGIdotNET"/>
+                    </a>
+                </div>
+                <div class="col-md-8 col-xs-12 pull-right">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+            <div class="row">
+                <form class="form-inline pull-right" role="search">
+                    <input type="text" name="query"/>
+                    <input type="submit" value="cerca"/>
+                </form>
+            </div>
+            <div class="row pull-right" style="padding-right: 15px">
+                <nav>
+                    <ul class="pull-right">
+                        <li>
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Chi siamo", "Contributors", "Partners")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Collabora", "SupportUs", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Articoli", "Archivio", "Articoli")
+                        </li>
+                        <li>
+                            <a itemprop="url" href="http://blogs.ugidotnet.org">Blogs</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Eventi", "Archivio", "Eventi")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Forum", string.Empty, "Forum")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Media", "Archivio", "Media")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Notizie", "Archivio", "News")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Tip", "Archivio", "Tip")
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row col-md-12">
+                <div class="col-md-2 pull-left">
+                    <h6>Community</h6>
+                    <ul class="list-unstyled">
+                        <li>
+                            @Html.ActionLink("Chi siamo", "Contributors", "Partners")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Collabora", "SupportUs", "Home")
+                        </li>
+                        <li>
+                            <a href="http://blogs.ugidotnet.org">Blogs</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Forum", string.Empty, "Forum")
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2 pull-left">
+                    <h6>Contenuti</h6>
+                    <ul class="list-unstyled">
+                        <li>
+                            @Html.ActionLink("Articoli", "Archivio", "Articoli")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Media", string.Empty, "Media")
+                        </li>
+                        <li>
+                            @Html.ActionLink("News", "Archivio", "News")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Tip", "Archivio", "Tip")
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2 pull-left">
+                    <h6>Social</h6>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://www.facebook.com/UGIdotNET">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com/u/0/communities/107657322645561612738">Google+</a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com/UGIdotNET">Twitter</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2 pull-left">
+                    <h6>Legalese</h6>
+                    <ul class="list-unstyled">
+                        <li>
+                            @Html.ActionLink("Note legali", "Legalese", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Cookie Policy", "CookiePolicy", "Home")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <p>
+                ©2001-2015 User Group Italiano .NET (UGIdotNET). Tutti i diritti riservati.
+                <a href="/home/legalese" style="text-decoration: underline">Note legali</a>. - Partita IVA 01927050185 - Sito realizzato da
+                <a href="http://www.manageddesigns.it" style="text-decoration: underline">Managed Designs S.r.l.</a>
+            </p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

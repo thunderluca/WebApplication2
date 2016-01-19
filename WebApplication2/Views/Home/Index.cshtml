@@ -1,0 +1,106 @@
+﻿@model WebApplication2.ViewModels.Home.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="~/Scripts/Home/Services/blogService.js"></script>
+<script src="~/Scripts/Home/Controllers/homeController.js"></script>
+<script src="~/Scripts/Home/index.js"></script>
+
+<div class="col-md-12 col-sm-12">
+    <div class="row">
+        <p style="text-align: justify">
+            <strong>UGIdotNET</strong> è il primo User Group Italiano dedicato a Microsoft .NET Framework ed alle Common Language Infrastructure (ISO/IEC 23271). E' una associazione
+            <em>indipendente</em> e <em>no-profit</em> fondata e interamente gestita dai soci aderenti, accomunati dalle reciproche conoscenze ed esperienze ma anche dal proprio desiderio di costante aggiornamento ed approfondimento del Framework .NET.<br>
+            <strong>UGIdotNET</strong> vuole rispondere a questa esigenza proponendo gruppi di discussione e meeting ricorrenti nei quali si condividono idee ed esperienze, oltre ad agevolare l'incontro di professionisti del settore.
+        </p>
+    </div>
+</div>
+
+<div class="col-md-9 col-sm-12">
+    <section>
+        <ul class="list-unstyled">
+            @foreach (var content in Model.LatestContents)
+            {
+                <li itemscope itemtype="http://schema.org/Article" style="margin-bottom: 10px">
+                    <div class="row">
+                        <a itemprop="url" href="/articoli/@content.Id" class="pull-left" style="font-size: large">
+                            <h4 itemprop="name">@content.Title</h4>
+                        </a>
+                        <img class="pull-left hidden-xs typenail img-responsive" alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png" title="@content.SectionTitle" />
+                    </div>
+                    <div class="row">
+                        di
+                        <span itemscope itemtype="http://schema.org/Person" itemprop="author">
+                            <a itemprop="url" href="/autore/@content.AuthorId">
+                                <span itemprop="name" style="text-decoration: underline">@content.AuthorName</span>
+                            </a>
+                        </span>
+                        , pubblicato il @content.Published.ToString("dd/MM/yyyy") alle @content.Published.ToString("hh:mm")
+                        @if (!string.IsNullOrWhiteSpace(content.Excerpt))
+                        {
+                            <p itemprop="description" class="hidden-xs" style="font-style: italic; text-align: justify">
+                                @content.Excerpt
+                            </p>
+                        }
+                    </div>
+                </li>
+            }
+        </ul>
+    </section>
+</div>
+
+<aside class="col-md-3 col-sm-12">
+    <div>
+        <section id="Forum">
+            <h3>[Forum]</h3>
+            <ul class="list-unstyled">
+                @foreach (var thread in Model.LatestThreads)
+                {
+                    <li itemscope itemtype="http://schema.org/Article">
+                        <a itemprop="url" href="/forum/thread/@thread.Id"><h5 itemprop="name" style="font-weight: bold">@thread.Title</h5></a>
+                    </li>
+                }
+            </ul>
+
+        </section>
+    </div>
+
+    <div>
+        <section id="Media">
+            <h3>[MediaPosts]</h3>
+            <ul class="list-unstyled">
+                @foreach (var media in Model.LatestMedia)
+                {
+                    <li itemscope itemtype="http://schema.org/Article">
+                        <a itemprop="url" href="/video/@media.Id">
+                            <img itemprop="thumbnailUrl" src="@media.Preview" alt="@media.Title" title="@media.Title" height="150" width="200" />
+                        </a>
+                        <br />
+                        <a itemprop="url" href="/video/@media.Id">
+                            <h5 itemprop="name">@media.Title</h5>
+                        </a>
+                    </li>
+                }
+            </ul>
+
+        </section>
+    </div>
+
+    <div class="hidden-xs">
+        <section>
+            <h3>[Blogs]</h3>
+            <ul class="list-unstyled">
+                @foreach (var blogPost in Model.LatestBlogPosts)
+                {
+                    <li itemscope itemtype="http://schema.org/Blog">
+                        <a itemprop="url" href="@blogPost.Permalink" style="margin-top: 10px">
+                            <h5 itemprop="name" style="font-weight: bold">@blogPost.Title</h5>
+                        </a>
+                        @blogPost.Author, @blogPost.Published.ToString("dd/MM/yyyy")
+                    </li>
+                }
+            </ul>
+        </section>
+    </div>
+</aside>

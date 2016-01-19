@@ -1,0 +1,76 @@
+﻿@using WebApplication2.WorkerServices
+@model WebApplication2.ViewModels.Content.ArchivioViewModel
+@{
+    ViewBag.Title = "Elenco degli ultimi articoli UGIdotNET";
+}
+
+<div class="col-md-9 col-sm-12">
+    <section>
+        <h2>[Ultimi articoli]</h2>
+        <ul class="list-unstyled" style="margin-bottom: 10px">
+            @foreach (var content in Model.Contents)
+            {
+                <li itemscope itemtype="http://schema.org/Article">
+                    <a itemprop="url" href="/articoli/@content.Id">
+                        <h4 itemprop="name">@content.Title</h4>
+                    </a>
+                    di <span itemscope itemtype="http://schema.org/Person">
+                        <a itemprop="url" href="/autore/@content.AuthorId">
+                            <span itemprop="name" style="text-decoration: underline">@content.AuthorName</span>
+                        </a>
+                    </span>, pubblicato il @content.PublishedDate.ToString("dd/MM/yyyy") alle @content.PublishedDate.ToString("hh:mm")
+                </li>
+            }
+        </ul>
+        <ul class="navigation-bar list-unstyled">
+            <li>
+                <a>Pagina @(Model.PageIndex + 1) di @Model.TotalPageCount</a>
+            </li>
+            <li>
+                @if (Model.PageIndex + 1 != Model.TotalPageCount)
+                {
+                    if (Model.SelectedTagId.HasValue)
+                    {
+                        <a href="/articoli/archivio/@Model.PageIndex/@Model.SelectedTagId/@Model.SelectedTagTitle/"><<</a>
+                    }
+                    else
+                    {
+                        <a href="/articoli/archivio/@Model.PageIndex/"><<</a>
+                    }
+                }
+                else
+                {
+                    <a href="/"><<</a>
+                }
+            </li>
+            <li>
+                @if (Model.PageIndex + 1 != Model.TotalPageCount)
+                {
+                    if (Model.SelectedTagId.HasValue)
+                    {
+                        <a href="/articoli/archivio/@(Model.PageIndex + 2)/@Model.SelectedTagId/@Model.SelectedTagTitle/"><<</a>
+                    }
+                    else
+                    {
+                        <a href="/articoli/archivio/@(Model.PageIndex + 2)/"><<</a>
+                    }
+                }
+                else
+                {
+                    <a href="/">>></a>
+                }
+            </li>
+        </ul>
+    </section>
+</div>
+
+<aside class="col-md-3 col-sm-12">
+    <ul class="list-unlisted pull-left">
+        @foreach (var tag in Model.Tags)
+        {
+            <li>
+                <a href="/articoli/0/@tag.Id/@GlobalWorkerServices.UnescapeTitle(tag.Title)">@tag.Title</a>
+            </li>
+        }
+    </ul>
+</aside>

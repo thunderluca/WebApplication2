@@ -1,0 +1,50 @@
+﻿@model WebApplication2.ViewModels.Content.ContentViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div itemscope itemtype="http://schema.org/Article" class="col-md-9 col-sm-12">
+    <article>
+        <div class="row">
+            <h1 itemprop="name">@Model.Title</h1>
+            pubblicato da <span itemscope itemtype="http://schema.org/Person" itemprop="author">
+                <a itemprop="url" href="/autore/@Model.AuthorId">
+                    <span itemprop="name" style="text-decoration: underline">@Model.AuthorName</span>
+                </a>
+            </span>, il @Model.PublishedDate.ToString("dd/MM/yyyy") alle @Model.PublishedDate.ToString("hh:mm")
+            @if (Model.Tags.Any())
+            {
+                <p style="margin-top: 2px;">
+                    @foreach (var contentTag in Model.Tags)
+                    {
+                        <span class="tag">@contentTag.Title</span>
+                    }
+                </p>
+            }
+        </div>
+        <div class="row" itemprop="articleBody">
+            @Html.Raw(Model.Body)
+        </div>
+    </article>
+</div>
+
+<aside class="col-md-3 col-sm-12">
+    <section>
+        <h2>Ultime news</h2>
+        <ul class="list-unstyled">
+            @foreach (var article in Model.LatestArticles)
+            {
+                <li itemscope itemtype="http://schema.org/Article">
+                    <a itemprop="url" href="/articoli/@article.Id">
+                        <h5 itemprop="name" style="text-decoration: underline">@article.Title</h5>
+                    </a>
+                    di <span itemscope itemtype="http://schema.org/Person">
+                        <a itemprop="url" href="/autore/@article.AuthorId">
+                            <span itemprop="name" style="text-decoration: underline">@article.AuthorName</span>
+                        </a>
+                    </span>, pubblicato il @article.PublishedDate.ToString("dd/MM/yyyy") alle @article.PublishedDate.ToString("hh:mm")
+                </li>
+            }
+        </ul>
+    </section>
+</aside>

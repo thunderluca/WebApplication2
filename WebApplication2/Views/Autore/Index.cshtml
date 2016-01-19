@@ -1,0 +1,58 @@
+﻿@model WebApplication2.ViewModels.Autore.AutoreViewModel
+@{
+    ViewBag.Title = string.Format("Autore: '{0}'", Model.AuthorName);
+}
+
+<div class="col-md-9 col-sm-12">
+    <article>
+        <h1>@Model.AuthorName</h1>
+        iscritto dal: @Model.RegistrationDate.ToString("dd/MM/yyyy")
+        <div>
+            @Html.Raw(Model.RawBiography)
+        </div>
+        <h3>Ultime pubblicazioni</h3>
+        <ul class="list-unstyled">
+            @foreach (var content in Model.LatestContents)
+            {
+                <li itemscope itemtype="http://schema.org/Article">
+                    <img itemprop="thumbnailUrl" class="pull-left" alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png"/>
+                    <div>
+                        <a itemprop="url" href="/@content.SectionTitle.ToLower()/@content.Id">
+                            <h5 itemprop="name">@content.Title</h5>
+                        </a>
+                        pubblicato il @content.PublishedDate.ToString("dd/MM/yyyy") alle @content.PublishedDate.ToString("hh:mm")
+                    </div>
+                </li>
+            }
+        </ul>
+    </article>
+</div>
+<aside class="col-md-3 col-sm-12">
+    <section>
+        <h2>Social</h2>
+        <ul class="list-unstyled">
+            <li itemscope itemtype="http://schema.org/Blog">
+                Blog: <a itemprop="url" href="@Model.BlogSite">blog</a>
+            </li>
+            <li itemscope itemtype="http://schema.org/WebPage">
+                Facebook: <a itemprop="url" href="@Model.FacebookSite">profilo</a>
+            </li>
+            <li itemscope itemtype="http://schema.org/WebPage">
+                Google+: <a itemprop="url" href="@Model.GooglePlusSite">profilo</a>
+            </li>
+            <li itemscope itemtype="http://schema.org/WebPage">
+                Twitter: <a itemprop="url" href="@string.Format("https://www.twitter.com/{0}", @Model.TwitterAccount)">@Model.TwitterAccount</a>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>Stats</h2>
+        <ul class="list-unstyled">
+            <li>Numero di articoli: @Model.ArticlesCount</li>
+            <li>Numero di news: @Model.NewsCount</li>
+            <li>Numero di tip: @Model.TipsCount</li>
+            <li>Numero di risposte sul forum: @Model.ForumRepliesCount</li>
+        </ul>
+    </section>
+</aside>
+
