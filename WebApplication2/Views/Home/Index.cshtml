@@ -1,6 +1,6 @@
 ﻿@model WebApplication2.ViewModels.Home.HomeViewModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "UGIdotNET - Home Page";
 }
 
 <script src="~/Scripts/Home/Services/blogService.js"></script>
@@ -24,10 +24,11 @@
             {
                 <li itemscope itemtype="http://schema.org/Article" style="margin-bottom: 10px">
                     <div class="row">
-                        <a itemprop="url" href="/articoli/@content.Id" class="pull-left" style="font-size: large">
+                        <a itemprop="url" href="/@content.SectionTitle.ToLower()/@content.Id" class="pull-left" style="font-size: large">
                             <h4 itemprop="name">@content.Title</h4>
                         </a>
-                        <img class="pull-left hidden-xs img-square-small img-responsive" alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png" title="@content.SectionTitle" />
+                        <img class="pull-left hidden-xs img-square-small img-responsive" 
+                             alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png" title="@content.SectionTitle" />
                     </div>
                     <div class="row">
                         di

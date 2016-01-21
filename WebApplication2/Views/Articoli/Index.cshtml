@@ -1,6 +1,6 @@
 ﻿@model WebApplication2.ViewModels.Content.ContentViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = string.Format("{0} - UGIdotNET", Model.Title);
 }
 
 <div itemscope itemtype="http://schema.org/Article" class="col-md-9 col-sm-12">
@@ -32,17 +32,17 @@
     <section>
         <h2>Ultime news</h2>
         <ul class="list-unstyled">
-            @foreach (var article in Model.LatestArticles)
+            @foreach (var content in Model.LatestContents)
             {
                 <li itemscope itemtype="http://schema.org/Article">
-                    <a itemprop="url" href="/articoli/@article.Id">
-                        <h5 itemprop="name" style="text-decoration: underline">@article.Title</h5>
+                    <a itemprop="url" href="/articoli/@content.Id">
+                        <h5 itemprop="name" style="text-decoration: underline">@content.Title</h5>
                     </a>
                     di <span itemscope itemtype="http://schema.org/Person">
-                        <a itemprop="url" href="/autore/@article.AuthorId">
-                            <span itemprop="name" style="text-decoration: underline">@article.AuthorName</span>
+                        <a itemprop="url" href="/autore/@content.AuthorId">
+                            <span itemprop="name" style="text-decoration: underline">@content.AuthorName</span>
                         </a>
-                    </span>, pubblicato il @article.PublishedDate.ToString("dd/MM/yyyy") alle @article.PublishedDate.ToString("hh:mm")
+                    </span>, pubblicato il @content.PublishedDate.ToString("dd/MM/yyyy") alle @content.PublishedDate.ToString("hh:mm")
                 </li>
             }
         </ul>

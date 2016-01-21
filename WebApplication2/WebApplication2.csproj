@@ -286,13 +286,13 @@
     <Content Include="Views\Forum\Thread.cshtml" />
     <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\Home\SupportUs.cshtml" />
-    <Content Include="Views\Articoli\Index.cshtml" />
+    <Content Include="Views\Autore\Index.cshtml" />
     <Content Include="Views\Articoli\Archivio.cshtml" />
+    <Content Include="Views\Articoli\Index.cshtml" />
+    <Content Include="Views\News\Archivio.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Tip\Archivio.cshtml" />
     <Content Include="Views\Tip\Index.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\News\Archivio.cshtml" />
-    <Content Include="Views\Autore\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

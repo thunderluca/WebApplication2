@@ -20,7 +20,7 @@ namespace WebApplication2.ViewModels.Content
 
         public IEnumerable<ContentTag> Tags { get; set; }
 
-        public IEnumerable<Content> LatestArticles { get; set; }
+        public IEnumerable<Content> LatestContents { get; set; }
 
         public class Content
         {

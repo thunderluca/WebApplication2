@@ -12,7 +12,9 @@ namespace WebApplication2.Controllers
                 return new HttpStatusCodeResult(404);
             }
 
-            return View();
+            var model = ContentWorkerServices.GetContentModel(id.Value);
+
+            return View(model);
         }
 
         public ActionResult Archivio(int? page, int? tagId)

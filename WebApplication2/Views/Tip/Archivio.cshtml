@@ -1,7 +1,7 @@
 ﻿@using WebApplication2.WorkerServices
 @model WebApplication2.ViewModels.Content.ArchivioViewModel
 @{
-    ViewBag.Title = "Elenco degli ultimi tip UGIdotNET";
+    ViewBag.Title = "Elenco ultimi tip UGIdotNET";
 }
 
 <div class="col-md-9 col-sm-12">
@@ -24,23 +24,13 @@
         </ul>
         <ul class="navigation-bar list-unstyled">
             <li>
-                <a>Pagina @(Model.PageIndex + 1) di @Model.TotalPageCount</a>
-            </li>
-            <li>
-                @if (Model.PageIndex + 1 != Model.TotalPageCount)
+                @if (Model.TotalPageCount <= 0)
                 {
-                    if (Model.SelectedTagId.HasValue)
-                    {
-                        <a href="/tip/archivio/@Model.PageIndex/@Model.SelectedTagId/@Model.SelectedTagTitle/"><<</a>
-                    }
-                    else
-                    {
-                        <a href="/tip/archivio/@Model.PageIndex/"><<</a>
-                    }
+                    <a>Pagina 0 di 0</a>
                 }
                 else
                 {
-                    <a href="/"><<</a>
+                    <a>Pagina @(Model.PageIndex + 1) di @Model.TotalPageCount</a>
                 }
             </li>
             <li>
@@ -48,16 +38,33 @@
                 {
                     if (Model.SelectedTagId.HasValue)
                     {
-                        <a href="/tip/archivio/@(Model.PageIndex + 2)/@Model.SelectedTagId/@Model.SelectedTagTitle/"><<</a>
+                        <a href="/tip/archivio/@Model.PageIndex/@Model.SelectedTagId/@Model.SelectedTagTitle/">«</a>
                     }
                     else
                     {
-                        <a href="/tip/archivio/@(Model.PageIndex + 2)/"><<</a>
+                        <a href="/tip/archivio/@Model.PageIndex/">«</a>
                     }
                 }
                 else
                 {
-                    <a href="/">>></a>
+                    <a href="/">«</a>
+                }
+            </li>
+            <li>
+                @if (Model.PageIndex + 1 != Model.TotalPageCount)
+                {
+                    if (Model.SelectedTagId.HasValue)
+                    {
+                        <a href="/tip/archivio/@(Model.PageIndex + 2)/@Model.SelectedTagId/@Model.SelectedTagTitle/">»</a>
+                    }
+                    else
+                    {
+                        <a href="/tip/archivio/@(Model.PageIndex + 2)/">»</a>
+                    }
+                }
+                else
+                {
+                    <a href="/">»</a>
                 }
             </li>
         </ul>
@@ -69,7 +76,7 @@
         @foreach (var tag in Model.Tags)
         {
             <li>
-                <a href="/tip/0/@tag.Id/@GlobalWorkerServices.UnescapeTitle(tag.Title)">@tag.Title</a>
+                <a href="/tip/archivio/0/@tag.Id/@GlobalWorkerServices.UnescapeTitle(tag.Title)">@tag.Title</a>
             </li>
         }
     </ul>

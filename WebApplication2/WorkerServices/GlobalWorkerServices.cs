@@ -40,7 +40,8 @@ namespace WebApplication2.WorkerServices
 
         public static string UnescapeTitle(string inputTagTitle)
         {
-            return Regex.Replace(inputTagTitle, @"^(?!(.*([\.]| ).*))", "-");
+            var outputString = inputTagTitle.Replace('.', '-');
+            return outputString.Replace(' ', '-');
         }
     }
 }

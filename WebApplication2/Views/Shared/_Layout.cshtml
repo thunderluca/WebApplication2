@@ -1,8 +1,9 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>UGIdotNET - @ViewBag.Title</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
@@ -15,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-xs-12 pull-left">
-                    <a href="http://www.ugidotnet.org">
+                    <a href="/">
                         <img src="/Content/ugidotnet2.png" alt="UGIdotNET"/>
                     </a>
                 </div>
@@ -54,7 +55,7 @@
                             @Html.ActionLink("Forum", string.Empty, "Forum")
                         </li>
                         <li>
-                            @Html.ActionLink("Media", "Archivio", "Media")
+                            @Html.ActionLink("Media", string.Empty, "Media")
                         </li>
                         <li>
                             @Html.ActionLink("Notizie", "Archivio", "News")

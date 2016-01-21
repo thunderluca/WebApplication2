@@ -1,4 +1,10 @@
-﻿body {
+﻿html {
+    background: #E2E2E2;
+    padding: 0;
+    margin: 0;
+}
+
+body {
     font-family: 'Segoe UI',Helvetica,Sans-Serif;
     line-height: 1.4;
     border-top-width: 10px;

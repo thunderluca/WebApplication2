@@ -38,7 +38,7 @@ namespace WebApplication2.WorkerServices.Content
                                     PublishedDate = content.PublishedDate
                                 }).ToList().Take(5);
 
-                model.LatestArticles = articles;
+                model.LatestContents = articles;
 
                 return model;
             }
@@ -83,28 +83,37 @@ namespace WebApplication2.WorkerServices.Content
                                 Title = tag.Title
                             }).Take(20).ToList();
 
+                model.Tags = tags;
+
                 var firstQueryable = tagId > 0
                     ? context.Contents.Where(content => content.Tags.Any(tag => tag.Id == tagId))
                     : context.Contents;
 
                 var count = firstQueryable.Count();
 
-                var articles = (from content in firstQueryable
-                             orderby content.PublishedDate descending
-                             where content.Section.Id == sectionId
-                             select new ArchivioViewModel.Content
-                             {
-                                 Id = content.Id,
-                                 Title = content.Title,
-                                 Body = content.Body,
-                                 AuthorId = content.Author.Id,
-                                 AuthorName = content.Author.Name + " " + content.Author.Surname,
-                                 PublishedDate = content.PublishedDate
-                             }).Skip(page * 10).Take(10).ToList();
+                if (count <= 0)
+                {
+                    model.Contents = new ArchivioViewModel.Content[] { };
+                    model.TotalPageCount = 0;
+                }
+                else
+                {
+                    var articles = (from content in firstQueryable
+                                    orderby content.PublishedDate descending
+                                    where content.Section.Id == sectionId
+                                    select new ArchivioViewModel.Content
+                                    {
+                                        Id = content.Id,
+                                        Title = content.Title,
+                                        Body = content.Body,
+                                        AuthorId = content.Author.Id,
+                                        AuthorName = content.Author.Name + " " + content.Author.Surname,
+                                        PublishedDate = content.PublishedDate
+                                    }).Skip(page * 10).Take(10).ToList();
 
-                model.Contents = articles;
-                model.Tags = tags;
-                model.TotalPageCount = (count/10) + 1;
+                    model.Contents = articles;
+                    model.TotalPageCount = (count / 10) + 1;
+                }
 
                 return model;
             }

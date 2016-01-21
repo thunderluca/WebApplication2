@@ -10,9 +10,10 @@ namespace WebApplication2
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "TagArchive",
+                name: "ContentArchive",
                 url: "{controller}/Archivio/{page}/{tagId}/{tagTitle}",
-                defaults: new {
+                defaults: new
+                {
                     controller = "Articoli",
                     action = "Archivio",
                     page = UrlParameter.Optional,
@@ -20,34 +21,28 @@ namespace WebApplication2
                     tagTitle = UrlParameter.Optional
                 });
 
-            routes.MapRoute(
-                name: "ArticlesArchive",
-                url: "Articoli/Archivio/{page}",
-                defaults: new { controller = "Articoli", action = "Archivio", page = UrlParameter.Optional }
-                );
+            //routes.MapRoute(
+            //    name: "NewsArchive",
+            //    url: "News/Archivio/{page}",
+            //    defaults: new { controller = "News", action = "Archivio", page = UrlParameter.Optional }
+            //    );
 
-            routes.MapRoute(
-                name: "NewsArchive",
-                url: "News/Archivio/{page}",
-                defaults: new { controller = "News", action = "Archivio", page = UrlParameter.Optional }
-                );
+            //routes.MapRoute(
+            //    name: "TipsArchive",
+            //    url: "Tip/Archivio/{page}",
+            //    defaults: new { controller = "Tip", action = "Archivio", page = UrlParameter.Optional }
+            //    );
 
-            routes.MapRoute(
-                name: "TipsArchive",
-                url: "Tip/Archivio/{page}",
-                defaults: new { controller = "Tip", action = "Archivio", page = UrlParameter.Optional }
-                );
-
-            routes.MapRoute(
-                name: "EventsArchive",
-                url: "Eventi/Archivio/{page}",
-                defaults: new { controller = "Eventi", action = "Archivio", page = UrlParameter.Optional }
-                );
+            //routes.MapRoute(
+            //    name: "EventsArchive",
+            //    url: "Eventi/Archivio/{page}",
+            //    defaults: new { controller = "Eventi", action = "Archivio", page = UrlParameter.Optional }
+            //    );
 
             routes.MapRoute(
                 name: "MediaArchive",
-                url: "Media/{page}",
-                defaults: new { controller = "Media", action = "Archivio", page = UrlParameter.Optional }
+                url: "Media/",
+                defaults: new { controller = "Video", action = "Index", page = UrlParameter.Optional }
                 );
 
             routes.MapRoute(
@@ -83,7 +78,7 @@ namespace WebApplication2
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new {controller = "Home", action = "Index", id = UrlParameter.Optional}
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
                 );
         }
     }
