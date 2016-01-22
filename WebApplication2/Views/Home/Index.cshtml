@@ -82,10 +82,17 @@
             </ul>
         </section>
     </div>
-    <div class="hidden-xs">
+    <div class="hidden-xs" ng-app="app" ng-controller="homeController">
         <section>
             <h3>[Blogs]</h3>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled" ng-model="blogs">
+                @*<li itemscope itemtype="http://schema.org/Blog" ng-repeat="blogPost in blogs">
+                    <a itemprop="url" href="{{blogPost.permalink}}" style="margin-top: 10px">
+                        <h5 itemprop="name" style="font-weight: bold">{{blogPost.title}}</h5>
+                    </a>
+                    {{blogPost.author}}, {{blogPost.date}}
+                </li>*@
+
                 @foreach (var blogPost in Model.LatestBlogPosts)
                 {
                     <li itemscope itemtype="http://schema.org/Blog">

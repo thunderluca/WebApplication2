@@ -1,15 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/jqueryxml2json")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-static-top">
@@ -17,7 +11,7 @@
             <div class="row">
                 <div class="col-md-4 col-xs-12 pull-left">
                     <a href="/">
-                        <img src="/Content/ugidotnet2.png" alt="UGIdotNET"/>
+                        <img src="/Content/ugidotnet2.png" alt="UGIdotNET" />
                     </a>
                 </div>
                 <div class="col-md-8 col-xs-12 pull-right">
@@ -26,8 +20,8 @@
             </div>
             <div class="row">
                 <form class="form-inline pull-right" role="search">
-                    <input type="text" name="query"/>
-                    <input type="submit" value="cerca"/>
+                    <input type="text" name="query" />
+                    <input type="submit" value="cerca" />
                 </form>
             </div>
             <div class="row pull-right" style="padding-right: 15px">
@@ -144,7 +138,11 @@
         </div>
     </footer>
 
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryxml2json")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

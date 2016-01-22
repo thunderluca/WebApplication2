@@ -5,6 +5,8 @@ namespace WebApplication2.Controllers
 {
     public class NewsController : Controller
     {
+        ContentWorkerServices worker = new ContentWorkerServices();
+
         public ActionResult Index(int? id)
         {
             if (!id.HasValue)
@@ -12,7 +14,7 @@ namespace WebApplication2.Controllers
                 return new HttpStatusCodeResult(404);
             }
 
-            var model = ContentWorkerServices.GetContentModel(id.Value);
+            var model = worker.GetContentModel(id.Value);
 
             return View(model);
         }
@@ -24,7 +26,7 @@ namespace WebApplication2.Controllers
                 page = 0;
             }
 
-            var model = ContentWorkerServices.GetArchiveModel(page.Value, 2, tagId ?? -1);
+            var model = worker.GetArchiveModel(page.Value, 2, tagId ?? -1);
 
             return View(model);
         }

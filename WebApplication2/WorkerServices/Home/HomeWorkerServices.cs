@@ -6,7 +6,7 @@ namespace WebApplication2.WorkerServices.Home
 {
     public class HomeWorkerServices
     {
-        public static HomeViewModel GetHomeModel()
+        public HomeViewModel GetHomeModel()
         {
             using (var context = new UgiContext())
             {

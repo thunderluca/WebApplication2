@@ -6,7 +6,7 @@ namespace WebApplication2.WorkerServices.Content
 {
     public class ContentWorkerServices
     {
-        public static ContentViewModel GetContentModel(int id)
+        public ContentViewModel GetContentModel(int id)
         {
             using (var context = new UgiContext())
             {
@@ -44,7 +44,7 @@ namespace WebApplication2.WorkerServices.Content
             }
         }
 
-        public static ArchivioViewModel GetArchiveModel(int page, int sectionId, int tagId)
+        public ArchivioViewModel GetArchiveModel(int page, int sectionId, int tagId)
         {
             if (page < 0)
                 page = 0;
@@ -82,6 +82,11 @@ namespace WebApplication2.WorkerServices.Content
                                 Id = tag.Id,
                                 Title = tag.Title
                             }).Take(20).ToList();
+
+                foreach (var tag in tags)
+                {
+                    tag.UnescapedTitle = GlobalWorkerServices.UnescapeTitle(tag.Title);
+                }
 
                 model.Tags = tags;
 

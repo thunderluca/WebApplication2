@@ -1,4 +1,4 @@
-﻿var indexApp = angular.module("indexApp", [])
+﻿var app = angular.module("app", [])
 
     .controller("homeController", homeController)
     .service("blogService", blogService);

@@ -6,7 +6,7 @@ namespace WebApplication2.WorkerServices.Forum
 {
     public class ForumWorkerServices
     {
-        public static ThreadViewModel GetThreadModel(int id, int page = 1)
+        public ThreadViewModel GetThreadModel(int id, int page = 1)
         {
             using (var context = new UgiContext())
             {

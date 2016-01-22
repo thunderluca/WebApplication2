@@ -76,7 +76,7 @@
         @foreach (var tag in Model.Tags)
         {
             <li>
-                <a href="/tip/archivio/0/@tag.Id/@GlobalWorkerServices.UnescapeTitle(tag.Title)">@tag.Title</a>
+                <a href="/tip/archivio/0/@tag.Id/@tag.UnescapedTitle">@tag.Title</a>
             </li>
         }
     </ul>

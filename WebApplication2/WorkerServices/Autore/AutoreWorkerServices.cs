@@ -6,7 +6,7 @@ namespace WebApplication2.WorkerServices.Autore
 {
     public class AutoreWorkerServices
     {
-        public static AutoreViewModel GetAutoreViewModel(int id)
+        public AutoreViewModel GetAutoreViewModel(int id)
         {
             using (var context = new UgiContext())
             {

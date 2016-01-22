@@ -5,9 +5,11 @@ namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
     {
+        HomeWorkerServices worker = new HomeWorkerServices();
+
         public ActionResult Index()
         {
-            var model = HomeWorkerServices.GetHomeModel();
+            var model = worker.GetHomeModel();
 
             return View(model);
         }

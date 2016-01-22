@@ -5,6 +5,8 @@ namespace WebApplication2.Controllers
 {
     public class AutoreController : Controller
     {
+        AutoreWorkerServices worker = new AutoreWorkerServices();
+
         // GET: Author
         public ActionResult Index(int? id)
         {
@@ -13,7 +15,7 @@ namespace WebApplication2.Controllers
                 return new HttpStatusCodeResult(404);
             }
 
-            var model = AutoreWorkerServices.GetAutoreViewModel(id.Value);
+            var model = worker.GetAutoreViewModel(id.Value);
 
             return View(model);
         }

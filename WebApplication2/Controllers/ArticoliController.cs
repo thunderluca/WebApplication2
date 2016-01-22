@@ -5,14 +5,18 @@ namespace WebApplication2.Controllers
 {
     public class ArticoliController : Controller
     {
+        ContentWorkerServices worker = new ContentWorkerServices();
+
         public ActionResult Index(int? id)
         {
             if (!id.HasValue)
             {
                 return new HttpStatusCodeResult(404);
             }
-            
-            var model = ContentWorkerServices.GetContentModel(id.Value); 
+
+            var worker = new ContentWorkerServices();
+
+            var model = worker.GetContentModel(id.Value); 
 
             return View(model);
         }
@@ -24,7 +28,7 @@ namespace WebApplication2.Controllers
                 page = 0;
             }
 
-            var model = ContentWorkerServices.GetArchiveModel(page.Value, 1, tagId ?? -1);
+            var model = worker.GetArchiveModel(page.Value, 1, tagId ?? -1);
 
             return View(model);
         }

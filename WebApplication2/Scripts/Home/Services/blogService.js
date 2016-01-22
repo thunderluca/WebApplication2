@@ -2,9 +2,11 @@
     this.latest = function (callback) {
 
         return $http({
-            method: "get",
+            method: "GET",
             url: "http://feeds.feedburner.com/UgidotnetLatestBlogPosts?format=xml"
-        }).success(function (data) {
+        }).then(function (data) {
+
+            console.log(data);
 
             var json = $.xml2json(data);
 
@@ -13,19 +15,18 @@
             $.each(json.channel.item, function (i, item) {
 
                 var article = {
-                    id: i,
                     permalink: item.link,
                     title: item.title,
                     author: item.creator,
                     date: item.pubDate
                 };
 
-                console.log(JSON.stringify(article));
-
                 blogs[i] = article;
             });
 
             callback(blogs);
+        }, function errorCallback(response) {
+            console.log("error! " + JSON.stringify(response));
         });
     }
 }

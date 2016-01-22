@@ -37,6 +37,8 @@ namespace WebApplication2.ViewModels.Content
             public int Id { get; set; }
 
             public string Title { get; set; }
+
+            public string UnescapedTitle { get; set; }
         }
     }
 }
