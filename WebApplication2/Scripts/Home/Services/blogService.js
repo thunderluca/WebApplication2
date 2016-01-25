@@ -2,8 +2,8 @@
     this.latest = function (callback) {
 
         return $http({
-            method: "GET",
-            url: "http://feeds.feedburner.com/UgidotnetLatestBlogPosts?format=xml"
+            method: 'GET',
+            url: 'http://feeds.feedburner.com/UgidotnetLatestBlogPosts?format=xml'
         }).then(function (data) {
 
             console.log(data);

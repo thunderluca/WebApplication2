@@ -27,12 +27,16 @@ body {
     white-space: normal;
 }
 
+p * a:hover {
+    background-color: #d3dce0;
+}
+
 a,
-a:visited,
 a:active,
 a:hover,
 #loginLink,
 #registerLink,
+ul.pull-right > li:first-child > a:hover, /*Why???*/
 ul.pull-right > li > a:hover {
     color: #333;
 }
@@ -45,10 +49,6 @@ ul.pull-right > li > a:hover {
 h1, h2, h3 {
     margin-top: 20px;
     margin-bottom: 10px;
-}
-
-p * a:hover {
-    background-color: #d3dce0;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -174,7 +174,6 @@ ul.pull-right > li {
 }
 
 ul.pull-right > li > a,
-ul.pull-right > li > a:active,
 ul.pull-right > li > a:visited {
     text-decoration: none;
     color: #999;

@@ -4,11 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
-
-    <script src="~/Scripts/Shared/layout.js"></script>
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryxml2json")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-static-top">
@@ -24,9 +19,9 @@
                 </div>
             </div>
             <div class="row">
-                <form class="form-inline pull-right" role="search">
+                <form class="form-inline pull-right" role="search" onsubmit="return submitQuery(this)">
                     <input type="text" id="query" />
-                    <input type="submit" onclick="submitQuery()" value="cerca" />
+                    <input type="submit" value="cerca" />
                 </form>
             </div>
             <div class="row pull-right" style="padding-right: 15px">
@@ -137,13 +132,18 @@
             </div>
             <p>
                 ©2001-2015 User Group Italiano .NET (UGIdotNET). Tutti i diritti riservati.
-                <a href="/home/legalese" style="text-decoration: underline">Note legali</a>. - Partita IVA 01927050185 - Sito realizzato da
-                <a href="http://www.manageddesigns.it" style="text-decoration: underline">Managed Designs S.r.l.</a>
+                <a href="/home/legalese">Note legali</a>. - Partita IVA 01927050185 - Sito realizzato da
+                <a href="http://www.manageddesigns.it">Managed Designs S.r.l.</a>
             </p>
         </div>
     </footer>
 
     @Styles.Render("~/Content/css")
+
+    <script src="~/Scripts/Shared/layout.js"></script>
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryxml2json")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
