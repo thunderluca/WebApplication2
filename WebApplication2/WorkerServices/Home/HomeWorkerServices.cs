@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using WebApplication2.ViewModels.Home;
 
 namespace WebApplication2.WorkerServices.Home
@@ -10,56 +9,18 @@ namespace WebApplication2.WorkerServices.Home
         {
             using (var context = new Models.UgiContext())
             {
-                var mixedContents = context.Contents.OrderByDescending(content => content.PublishedDate).Take(10).ToList();
-
-                var contents = new List<IndexViewModel.Content>();
-                foreach (var content in mixedContents)
-                {
-                    if (content is Models.Articolo)
-                    {
-                        var article = new IndexViewModel.Article
-                        {
-                            Id = content.Id,
-                            Title = content.Title,
-                            Abstract = content.Abstract,
-                            PublishedDate = content.PublishedDate,
-                            AuthorId = content.Author.Id,
-                            AuthorName = content.Author.Name + " " + content.Author.Surname
-                        };
-
-                        contents.Add(article);
-                    }
-
-                    if (content is Models.News)
-                    {
-                        var news = new IndexViewModel.News
-                        {
-                            Id = content.Id,
-                            Title = content.Title,
-                            Abstract = content.Abstract,
-                            PublishedDate = content.PublishedDate,
-                            AuthorId = content.Author.Id,
-                            AuthorName = content.Author.Name + " " + content.Author.Surname
-                        };
-
-                        contents.Add(news);
-                    }
-
-                    if (content is Models.Tip)
-                    {
-                        var tip = new IndexViewModel.Tip
-                        {
-                            Id = content.Id,
-                            Title = content.Title,
-                            Abstract = content.Abstract,
-                            PublishedDate = content.PublishedDate,
-                            AuthorId = content.Author.Id,
-                            AuthorName = content.Author.Name + " " + content.Author.Surname
-                        };
-
-                        contents.Add(tip);
-                    }
-                }
+                var contents = (from content in context.Contents
+                                orderby content.PublishedDate descending
+                                select new IndexViewModel.Content
+                                {
+                                    Id = content.Id,
+                                    Title = content.Title,
+                                    Abstract = content.Abstract,
+                                    PublishedDate = content.PublishedDate,
+                                    AuthorId = content.Author.Id,
+                                    AuthorName = content.Author.Name + " " + content.Author.Surname,
+                                    Section = content is Models.Articolo ? "Articolo" : (content is Models.News ? "News" : "Tip")
+                                }).Take(10).ToList();
 
                 var threads = (from thread in context.Threads
                                select new IndexViewModel.Thread

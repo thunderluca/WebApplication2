@@ -26,13 +26,9 @@ namespace WebApplication2.ViewModels.Home
             public string AuthorName { get; set; }
             
             public string Abstract { get; set; }
+
+            public string Section { get; set; }
         }
-
-        public class Article : Content { }
-
-        public class News : Content { }
-
-        public class Tip : Content { }
 
         public class BlogPost
         {

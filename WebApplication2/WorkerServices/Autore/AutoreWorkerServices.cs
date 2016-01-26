@@ -40,13 +40,16 @@ namespace WebApplication2.WorkerServices.Autore
                     where reply.Author.Id == id
                     select reply).Count();
 
-                var contents = (from content in authorContentsQueryable
-                    select new AutoreViewModel.Content
-                    {
-                        Id = content.Id,
-                        Title = content.Title,
-                        PublishedDate = content.PublishedDate
-                    }).Take(10).ToList();
+                var contents =
+                    (from content in authorContentsQueryable
+                     orderby content.PublishedDate descending
+                     select new AutoreViewModel.Content
+                     {
+                         Id = content.Id,
+                         Title = content.Title,
+                         PublishedDate = content.PublishedDate,
+                         Section = content is Articolo ? "Articolo" : (content is News ? "News" : "Tip")
+                     }).Take(10).ToList();
 
                 model.LatestContents = contents;
                 model.ArticlesCount = articlesCount;

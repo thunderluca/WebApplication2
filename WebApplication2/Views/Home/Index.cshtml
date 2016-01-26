@@ -25,11 +25,11 @@
                 {
                     <li itemscope itemtype="http://schema.org/Article" style="margin-bottom: 10px">
                         <div class="row">
-                            <a itemprop="url" href="/@content.GetType().Name.ToLower()/@content.Id" class="pull-left" style="font-size: large">
+                            <a itemprop="url" href="/@content.Section.ToLower()/@content.Id" class="pull-left" style="font-size: large">
                                 <h4 itemprop="name">@content.Title</h4>
                             </a>
                             <img class="pull-left hidden-xs img-square-small img-responsive"
-                                 alt="Logo @content.GetType().Name" src="/Content/@(GetType().Name).png" title="@content.GetType().Name" />
+                                 alt="Logo @content.Section" src="/Content/@(content.Section).png" title="@content.Section" />
                         </div>
                         <div class="row">
                             di
