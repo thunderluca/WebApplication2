@@ -17,6 +17,6 @@ namespace WebApplication2.Models
         public string Permalink { get; set; }
 
         [Required]
-        public DateTime Published { get; set; }
+        public DateTime PublishedDate { get; set; }
     }
 }

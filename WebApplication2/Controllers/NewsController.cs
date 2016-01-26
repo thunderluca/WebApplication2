@@ -14,7 +14,7 @@ namespace WebApplication2.Controllers
                 return new HttpStatusCodeResult(404);
             }
 
-            var model = worker.GetContentModel(id.Value);
+            var model = worker.GetContentViewModel(id.Value);
 
             return View(model);
         }
@@ -26,7 +26,7 @@ namespace WebApplication2.Controllers
                 page = 0;
             }
 
-            var model = worker.GetArchiveModel(page.Value, 2, tagId ?? -1);
+            var model = worker.GetNewsArchiveViewModel(page.Value, tagId ?? -1);
 
             return View(model);
         }

@@ -16,7 +16,7 @@ namespace WebApplication2.Controllers
 
             var worker = new ContentWorkerServices();
 
-            var model = worker.GetContentModel(id.Value); 
+            var model = worker.GetContentViewModel(id.Value); 
 
             return View(model);
         }
@@ -28,7 +28,7 @@ namespace WebApplication2.Controllers
                 page = 0;
             }
 
-            var model = worker.GetArchiveModel(page.Value, 1, tagId ?? -1);
+            var model = worker.GetArticlesArchiveViewModel(page.Value, tagId ?? -1);
 
             return View(model);
         }

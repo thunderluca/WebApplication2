@@ -25,8 +25,5 @@ namespace WebApplication2.Models
         public Author Author { get; set; }
 
         public IList<ContentTag> Tags { get; set; }
-
-        [Required]
-        public ContentSection Section { get; set; }
     }
 }

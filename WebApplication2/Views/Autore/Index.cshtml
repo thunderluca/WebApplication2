@@ -15,9 +15,9 @@
             @foreach (var content in Model.LatestContents)
             {
                 <li itemscope itemtype="http://schema.org/Article">
-                    <img itemprop="thumbnailUrl" class="pull-left img-square-large" alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png"/>
+                    <img itemprop="thumbnailUrl" class="pull-left img-square-large" alt="Logo @content.GetType().Name" src="/Content/@(content.GetType().Name).png"/>
                     <div>
-                        <a itemprop="url" href="/@content.SectionTitle.ToLower()/@content.Id">
+                        <a itemprop="url" href="/@content.GetType().Name.ToLower()/@content.Id">
                             <h5 itemprop="name">@content.Title</h5>
                         </a>
                         pubblicato il @content.PublishedDate.ToString("dd/MM/yyyy") alle @content.PublishedDate.ToString("hh:mm")

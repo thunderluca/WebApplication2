@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WebApplication2.ViewModels.Content
 {
-    public class ArchivioViewModel
+    public class ArchiveViewModel
     {
         public IEnumerable<Content> Contents { get; set; }
 

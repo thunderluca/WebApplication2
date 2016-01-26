@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WebApplication2.ViewModels.Home
 {
-    public class HomeViewModel
+    public class IndexViewModel
     {
         public IEnumerable<Content> LatestContents { get; set; }
         
@@ -19,16 +19,20 @@ namespace WebApplication2.ViewModels.Home
             
             public string Title { get; set; }
             
-            public DateTime Published { get; set; }
+            public DateTime PublishedDate { get; set; }
             
             public int AuthorId { get; set; }
 
             public string AuthorName { get; set; }
             
-            public string Excerpt { get; set; }
-
-            public string SectionTitle { get; set; }
+            public string Abstract { get; set; }
         }
+
+        public class Article : Content { }
+
+        public class News : Content { }
+
+        public class Tip : Content { }
 
         public class BlogPost
         {
@@ -40,7 +44,7 @@ namespace WebApplication2.ViewModels.Home
             
             public string Permalink { get; set; }
             
-            public DateTime Published { get; set; }
+            public DateTime PublishedDate { get; set; }
         }
 
         public class MediaPost
@@ -50,6 +54,8 @@ namespace WebApplication2.ViewModels.Home
             public string Title { get; set; }
             
             public string Preview { get; set; }
+
+            public DateTime PublishedDate { get; set; }
         }
 
         public class Thread
@@ -57,6 +63,8 @@ namespace WebApplication2.ViewModels.Home
             public int Id { get; set; }
             
             public string Title { get; set; }
+
+            public DateTime PublishedDate { get; set; }
         }
     }
 }

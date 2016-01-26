@@ -38,8 +38,6 @@ namespace WebApplication2.ViewModels.Autore
             public string Title { get; set; }
 
             public DateTime PublishedDate { get; set; }
-
-            public string SectionTitle { get; set; }
         } 
     }
 }

@@ -9,7 +9,7 @@ namespace WebApplication2.Controllers
 
         public ActionResult Index()
         {
-            var model = worker.GetHomeModel();
+            var model = worker.GetIndexViewModel();
 
             return View(model);
         }

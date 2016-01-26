@@ -30,11 +30,11 @@ namespace WebApplication2.WorkerServices.Autore
                     where content.Author.Id == id
                     select content;
 
-                var articlesCount = authorContentsQueryable.Count(content => content.Section.Id == 1);
+                var articlesCount = authorContentsQueryable.Count(content => content is Articolo);
 
-                var newsCount = authorContentsQueryable.Count(content => content.Section.Id == 2);
+                var newsCount = authorContentsQueryable.Count(content => content is News);
 
-                var tipsCount = authorContentsQueryable.Count(content => content.Section.Id == 3);
+                var tipsCount = authorContentsQueryable.Count(content => content is Tip);
 
                 var repliesCount = (from reply in context.ForumReplies
                     where reply.Author.Id == id
@@ -45,7 +45,6 @@ namespace WebApplication2.WorkerServices.Autore
                     {
                         Id = content.Id,
                         Title = content.Title,
-                        SectionTitle = content.Section.Title,
                         PublishedDate = content.PublishedDate
                     }).Take(10).ToList();
 

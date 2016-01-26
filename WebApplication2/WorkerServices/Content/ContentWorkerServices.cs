@@ -6,7 +6,7 @@ namespace WebApplication2.WorkerServices.Content
 {
     public class ContentWorkerServices
     {
-        public ContentViewModel GetContentModel(int id)
+        public ContentViewModel GetContentViewModel(int id)
         {
             using (var context = new UgiContext())
             {
@@ -44,14 +44,14 @@ namespace WebApplication2.WorkerServices.Content
             }
         }
 
-        public ArchivioViewModel GetArchiveModel(int page, int sectionId, int tagId)
+        public ArchiveViewModel GetArticlesArchiveViewModel(int page, int tagId)
         {
             if (page < 0)
                 page = 0;
 
             using (var context = new UgiContext())
             {
-                var model = new ArchivioViewModel
+                var model = new ArchiveViewModel
                 {
                     PageIndex = page,
                     SelectedTagId = tagId
@@ -60,12 +60,12 @@ namespace WebApplication2.WorkerServices.Content
                 if (tagId > -1)
                 {
                     var selectedTag = (from tag in context.ContentTags
-                        where tag.Id == tagId
-                        select new ArchivioViewModel.ContentTag
-                        {
-                            Id = tag.Id,
-                            Title = tag.Title
-                        }).FirstOrDefault();
+                                       where tag.Id == tagId
+                                       select new ArchiveViewModel.ContentTag
+                                       {
+                                           Id = tag.Id,
+                                           Title = tag.Title
+                                       }).FirstOrDefault();
 
                     if (selectedTag != null)
                     {
@@ -77,7 +77,7 @@ namespace WebApplication2.WorkerServices.Content
 
                 var tags = (from tag in context.ContentTags
                             orderby tag.Title
-                            select new ArchivioViewModel.ContentTag
+                            select new ArchiveViewModel.ContentTag
                             {
                                 Id = tag.Id,
                                 Title = tag.Title
@@ -90,23 +90,183 @@ namespace WebApplication2.WorkerServices.Content
 
                 model.Tags = tags;
 
-                var firstQueryable = tagId > 0
-                    ? context.Contents.Where(content => content.Tags.Any(tag => tag.Id == tagId))
-                    : context.Contents;
+                var firstQueryable = context.Contents.Where(content => content is Articolo);
+
+                if (tagId > 0)
+                    firstQueryable = firstQueryable.Where(content => content.Tags.Any(tag => tag.Id == tagId));
 
                 var count = firstQueryable.Count();
 
                 if (count <= 0)
                 {
-                    model.Contents = new ArchivioViewModel.Content[] { };
+                    model.Contents = new ArchiveViewModel.Content[] { };
                     model.TotalPageCount = 0;
                 }
                 else
                 {
                     var articles = (from content in firstQueryable
                                     orderby content.PublishedDate descending
-                                    where content.Section.Id == sectionId
-                                    select new ArchivioViewModel.Content
+                                    select new ArchiveViewModel.Content
+                                    {
+                                        Id = content.Id,
+                                        Title = content.Title,
+                                        Body = content.Body,
+                                        AuthorId = content.Author.Id,
+                                        AuthorName = content.Author.Name + " " + content.Author.Surname,
+                                        PublishedDate = content.PublishedDate
+                                    }).Skip(page * 10).Take(10).ToList();
+
+                    model.Contents = articles;
+                    model.TotalPageCount = (count / 10) + 1;
+                }
+
+                return model;
+            }
+        }
+
+        public ArchiveViewModel GetNewsArchiveViewModel(int page, int tagId)
+        {
+            if (page < 0)
+                page = 0;
+
+            using (var context = new UgiContext())
+            {
+                var model = new ArchiveViewModel
+                {
+                    PageIndex = page,
+                    SelectedTagId = tagId
+                };
+
+                if (tagId > -1)
+                {
+                    var selectedTag = (from tag in context.ContentTags
+                                       where tag.Id == tagId
+                                       select new ArchiveViewModel.ContentTag
+                                       {
+                                           Id = tag.Id,
+                                           Title = tag.Title
+                                       }).FirstOrDefault();
+
+                    if (selectedTag != null)
+                    {
+                        model.SelectedTagId = selectedTag.Id;
+
+                        model.SelectedTagTitle = GlobalWorkerServices.UnescapeTitle(selectedTag.Title);
+                    }
+                }
+
+                var tags = (from tag in context.ContentTags
+                            orderby tag.Title
+                            select new ArchiveViewModel.ContentTag
+                            {
+                                Id = tag.Id,
+                                Title = tag.Title
+                            }).Take(20).ToList();
+
+                foreach (var tag in tags)
+                {
+                    tag.UnescapedTitle = GlobalWorkerServices.UnescapeTitle(tag.Title);
+                }
+
+                model.Tags = tags;
+
+                var firstQueryable = context.Contents.Where(content => content is News);
+
+                if (tagId > 0)
+                    firstQueryable = firstQueryable.Where(content => content.Tags.Any(tag => tag.Id == tagId));
+
+                var count = firstQueryable.Count();
+
+                if (count <= 0)
+                {
+                    model.Contents = new ArchiveViewModel.Content[] { };
+                    model.TotalPageCount = 0;
+                }
+                else
+                {
+                    var articles = (from content in firstQueryable
+                                    orderby content.PublishedDate descending
+                                    select new ArchiveViewModel.Content
+                                    {
+                                        Id = content.Id,
+                                        Title = content.Title,
+                                        Body = content.Body,
+                                        AuthorId = content.Author.Id,
+                                        AuthorName = content.Author.Name + " " + content.Author.Surname,
+                                        PublishedDate = content.PublishedDate
+                                    }).Skip(page * 10).Take(10).ToList();
+
+                    model.Contents = articles;
+                    model.TotalPageCount = (count / 10) + 1;
+                }
+
+                return model;
+            }
+        }
+
+        public ArchiveViewModel GetTipsArchiveViewModel(int page, int tagId)
+        {
+            if (page < 0)
+                page = 0;
+
+            using (var context = new UgiContext())
+            {
+                var model = new ArchiveViewModel
+                {
+                    PageIndex = page,
+                    SelectedTagId = tagId
+                };
+
+                if (tagId > -1)
+                {
+                    var selectedTag = (from tag in context.ContentTags
+                                       where tag.Id == tagId
+                                       select new ArchiveViewModel.ContentTag
+                                       {
+                                           Id = tag.Id,
+                                           Title = tag.Title
+                                       }).FirstOrDefault();
+
+                    if (selectedTag != null)
+                    {
+                        model.SelectedTagId = selectedTag.Id;
+
+                        model.SelectedTagTitle = GlobalWorkerServices.UnescapeTitle(selectedTag.Title);
+                    }
+                }
+
+                var tags = (from tag in context.ContentTags
+                            orderby tag.Title
+                            select new ArchiveViewModel.ContentTag
+                            {
+                                Id = tag.Id,
+                                Title = tag.Title
+                            }).Take(20).ToList();
+
+                foreach (var tag in tags)
+                {
+                    tag.UnescapedTitle = GlobalWorkerServices.UnescapeTitle(tag.Title);
+                }
+
+                model.Tags = tags;
+
+                var firstQueryable = context.Contents.Where(content => content is Tip);
+
+                if (tagId > 0)
+                    firstQueryable = firstQueryable.Where(content => content.Tags.Any(tag => tag.Id == tagId));
+
+                var count = firstQueryable.Count();
+
+                if (count <= 0)
+                {
+                    model.Contents = new ArchiveViewModel.Content[] { };
+                    model.TotalPageCount = 0;
+                }
+                else
+                {
+                    var articles = (from content in firstQueryable
+                                    orderby content.PublishedDate descending
+                                    select new ArchiveViewModel.Content
                                     {
                                         Id = content.Id,
                                         Title = content.Title,

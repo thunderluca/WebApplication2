@@ -1,4 +1,4 @@
-﻿@model WebApplication2.ViewModels.Home.HomeViewModel
+﻿@model WebApplication2.ViewModels.Home.IndexViewModel
 @{
     ViewBag.Title = "UGIdotNET - Home Page";
 }
@@ -19,90 +19,94 @@
 
 <div class="col-md-9 col-sm-12">
     <section>
-        <ul class="list-unstyled">
-            @foreach (var content in Model.LatestContents)
-            {
-                <li itemscope itemtype="http://schema.org/Article" style="margin-bottom: 10px">
-                    <div class="row">
-                        <a itemprop="url" href="/@content.SectionTitle.ToLower()/@content.Id" class="pull-left" style="font-size: large">
-                            <h4 itemprop="name">@content.Title</h4>
-                        </a>
-                        <img class="pull-left hidden-xs img-square-small img-responsive" 
-                             alt="Logo @content.SectionTitle" src="/Content/@(content.SectionTitle).png" title="@content.SectionTitle" />
-                    </div>
-                    <div class="row">
-                        di
-                        <span itemscope itemtype="http://schema.org/Person" itemprop="author">
-                            <a itemprop="url" href="/autore/@content.AuthorId">
-                                <span itemprop="name" style="text-decoration: underline">@content.AuthorName</span>
+        <article>
+            <ul class="list-unstyled">
+                @foreach (var content in Model.LatestContents)
+                {
+                    <li itemscope itemtype="http://schema.org/Article" style="margin-bottom: 10px">
+                        <div class="row">
+                            <a itemprop="url" href="/@content.GetType().Name.ToLower()/@content.Id" class="pull-left" style="font-size: large">
+                                <h4 itemprop="name">@content.Title</h4>
                             </a>
-                        </span>
-                        , pubblicato il @content.Published.ToString("dd/MM/yyyy") alle @content.Published.ToString("hh:mm")
-                        @if (!string.IsNullOrWhiteSpace(content.Excerpt))
-                        {
-                            <p itemprop="description" class="hidden-xs" style="font-style: italic; text-align: justify">
-                                @content.Excerpt
-                            </p>
-                        }
-                    </div>
-                </li>
-            }
-        </ul>
+                            <img class="pull-left hidden-xs img-square-small img-responsive"
+                                 alt="Logo @content.GetType().Name" src="/Content/@(GetType().Name).png" title="@content.GetType().Name" />
+                        </div>
+                        <div class="row">
+                            di
+                            <span itemscope itemtype="http://schema.org/Person" itemprop="author">
+                                <a itemprop="url" href="/autore/@content.AuthorId">
+                                    <span itemprop="name" style="text-decoration: underline">@content.AuthorName</span>
+                                </a>
+                            </span>
+                            , pubblicato il @content.PublishedDate.ToString("dd/MM/yyyy") alle @content.PublishedDate.ToString("hh:mm")
+                            @if (!string.IsNullOrWhiteSpace(content.Abstract))
+                            {
+                                <p itemprop="description" class="hidden-xs" style="font-style: italic; text-align: justify">
+                                    @content.Abstract
+                                </p>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+        </article>
     </section>
 </div>
 
-<aside class="col-md-3 col-sm-12">
-    <div>
-        <section>
-            <h3>[Forum]</h3>
-            <ul class="list-unstyled">
-                @foreach (var thread in Model.LatestThreads)
-            {
-                    <li itemscope itemtype="http://schema.org/Article">
-                        <a itemprop="url" href="/forum/thread/@thread.Id"><h5 itemprop="name" style="font-weight: bold">@thread.Title</h5></a>
-                    </li>
-                }
-            </ul>
-        </section>
-        <section>
-            <h3>[Media]</h3>
-            <ul class="list-unstyled">
-                @foreach (var media in Model.LatestMedia)
-            {
-                    <li itemscope itemtype="http://schema.org/Article">
-                        <a itemprop="url" href="/video/@media.Id">
-                            <img itemprop="thumbnailUrl" src="@media.Preview" alt="@media.Title" title="@media.Title" height="150" width="200" />
-                        </a>
-                        <br />
-                        <a itemprop="url" href="/video/@media.Id">
-                            <h5 itemprop="name">@media.Title</h5>
-                        </a>
-                    </li>
-                }
-            </ul>
-        </section>
-    </div>
-    <div class="hidden-xs" ng-app="index" ng-controller="homeController">
-        <section>
-            <h3>[Blogs]</h3>
-            <ul class="list-unstyled" ng-model="blogs">
-                @*<li itemscope itemtype="http://schema.org/Blog" ng-repeat="blogPost in blogs">
-                    <a itemprop="url" href="{{blogPost.permalink}}" style="margin-top: 10px">
-                        <h5 itemprop="name" style="font-weight: bold">{{blogPost.title}}</h5>
-                    </a>
-                    {{blogPost.author}}, {{blogPost.date}}
-                </li>*@
+<div class="col-md-3 col-sm-12">
+    <aside>
+        <div>
+            <section>
+                <h3>[Forum]</h3>
+                <ul class="list-unstyled">
+                    @foreach (var thread in Model.LatestThreads)
+                    {
+                        <li itemscope itemtype="http://schema.org/Article">
+                            <a itemprop="url" href="/forum/thread/@thread.Id"><h5 itemprop="name" style="font-weight: bold">@thread.Title</h5></a>
+                        </li>
+                    }
+                </ul>
+            </section>
+            <section>
+                <h3>[Media]</h3>
+                <ul class="list-unstyled">
+                    @foreach (var media in Model.LatestMedia)
+                    {
+                        <li itemscope itemtype="http://schema.org/Article">
+                            <a itemprop="url" href="/video/@media.Id">
+                                <img itemprop="thumbnailUrl" src="@media.Preview" alt="@media.Title" title="@media.Title" height="150" width="200" />
+                            </a>
+                            <br />
+                            <a itemprop="url" href="/video/@media.Id">
+                                <h5 itemprop="name">@media.Title</h5>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </section>
+        </div>
+        <div class="hidden-xs" ng-app="index" ng-controller="homeController">
+            <section>
+                <h3>[Blogs]</h3>
+                <ul class="list-unstyled" ng-model="blogs">
+                    @*<li itemscope itemtype="http://schema.org/Blog" ng-repeat="blogPost in blogs">
+                            <a itemprop="url" href="{{blogPost.permalink}}" style="margin-top: 10px">
+                                <h5 itemprop="name" style="font-weight: bold">{{blogPost.title}}</h5>
+                            </a>
+                            {{blogPost.author}}, {{blogPost.date}}
+                        </li>*@
 
-                @foreach (var blogPost in Model.LatestBlogPosts)
-                {
-                    <li itemscope itemtype="http://schema.org/Blog">
-                        <a itemprop="url" href="@blogPost.Permalink" style="margin-top: 10px">
-                            <h5 itemprop="name" style="font-weight: bold">@blogPost.Title</h5>
-                        </a>
-                        @blogPost.Author, @blogPost.Published.ToString("dd/MM/yyyy")
-                    </li>
-                }
-            </ul>
-        </section>
-    </div>
-</aside>
+                    @foreach (var blogPost in Model.LatestBlogPosts)
+                    {
+                        <li itemscope itemtype="http://schema.org/Blog">
+                            <a itemprop="url" href="@blogPost.Permalink" style="margin-top: 10px">
+                                <h5 itemprop="name" style="font-weight: bold">@blogPost.Title</h5>
+                            </a>
+                            @blogPost.Author, @blogPost.PublishedDate.ToString("dd/MM/yyyy")
+                        </li>
+                    }
+                </ul>
+            </section>
+        </div>
+    </aside>
+</div>

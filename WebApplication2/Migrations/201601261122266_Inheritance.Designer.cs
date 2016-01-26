@@ -7,13 +7,13 @@ namespace WebApplication2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class BiiigEdit2 : IMigrationMetadata
+    public sealed partial class Inheritance : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BiiigEdit2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Inheritance));
         
         string IMigrationMetadata.Id
         {
-            get { return "201601191535269_BiiigEdit2"; }
+            get { return "201601261122266_Inheritance"; }
         }
         
         string IMigrationMetadata.Source
