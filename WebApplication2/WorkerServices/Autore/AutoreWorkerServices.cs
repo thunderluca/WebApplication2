@@ -48,7 +48,7 @@ namespace WebApplication2.WorkerServices.Autore
                          Id = content.Id,
                          Title = content.Title,
                          PublishedDate = content.PublishedDate,
-                         Section = content is Articolo ? "Articolo" : (content is News ? "News" : "Tip")
+                         Section = content is Articolo ? "Articoli" : (content is News ? "News" : "Tip")
                      }).Take(10).ToList();
 
                 model.LatestContents = contents;

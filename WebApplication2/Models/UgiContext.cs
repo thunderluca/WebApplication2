@@ -10,8 +10,6 @@ namespace WebApplication2.Models
 
         public DbSet<Content> Contents { get; set; }
 
-        public DbSet<ContentSection> ContentSections { get; set; }
-
         public DbSet<ContentTag> ContentTags { get; set; }
 
         public DbSet<MediaPost> MediaPosts { get; set; }

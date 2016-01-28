@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication2.Models
@@ -25,5 +26,7 @@ namespace WebApplication2.Models
         public string GooglePlusSite { get; set; }
 
         public string TwitterAccount { get; set; }
+
+        public IList<MediaPost> MediaPosts { get; set; }
     }
 }

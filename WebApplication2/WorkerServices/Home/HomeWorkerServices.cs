@@ -19,7 +19,7 @@ namespace WebApplication2.WorkerServices.Home
                                     PublishedDate = content.PublishedDate,
                                     AuthorId = content.Author.Id,
                                     AuthorName = content.Author.Name + " " + content.Author.Surname,
-                                    Section = content is Models.Articolo ? "Articolo" : (content is Models.News ? "News" : "Tip")
+                                    Section = content is Models.Articolo ? "Articoli" : (content is Models.News ? "News" : "Tip")
                                 }).Take(10).ToList();
 
                 var threads = (from thread in context.Threads

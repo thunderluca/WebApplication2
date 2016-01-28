@@ -11,5 +11,7 @@ namespace WebApplication2.Models
         public string Title { get; set; }
 
         public IList<Content> Contents { get; set; } 
+
+        public IList<MediaPost> MediaPosts { get; set; }
     }
 }
